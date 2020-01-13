@@ -25,7 +25,7 @@ class Cities extends Model
     /**
      * @return mixed
      */
-    public function getCities()
+    public function getCities() : string
     {
         return $this->cities->getAllCities();
     }

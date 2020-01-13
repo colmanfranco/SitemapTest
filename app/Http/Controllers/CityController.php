@@ -20,20 +20,9 @@ class CityController extends Controller
     public function citiesIndex(Request $request)
     {
         $cities = new Cities(new City(new MusementApiService($request)));
-        $allCities = $cities->getCities();
-        $this->convertJsonToXml($allCities);
-    }
-
-    /**
-     * @param $array
-     * @return string
-     */
-    private function convertJsonToXml($array)
-    {
-        $citiesArray = json_decode($array, true);
-        dd($citiesArray);
-        $xmlConverter = new XmlConverter($citiesArray);
+        $citiesString = $cities->getCities();
+        $xmlConverter = new XmlConverter($citiesString);
         $xmlSitemap = $xmlConverter->convertArrayToXml();
-        return $xmlSitemap;
+        dd($xmlSitemap);
     }
 }

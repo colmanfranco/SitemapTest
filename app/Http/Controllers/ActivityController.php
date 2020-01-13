@@ -22,21 +22,10 @@ class ActivityController extends Controller
     public function activitiesIndex(Request $request, $cityId)
     {
         $activities = new Activities(new Activity(new MusementApiService($request), $cityId));
-        $allActivities = $activities->getCityActivities();
-        $xmlSitemap = $this->convertJsonToXml($allActivities);
+        $activitiesString = $activities->getCityActivities();
+        $xmlConverter = new XmlConverter($activitiesString);
+        $xmlSitemap = $xmlConverter->convertArrayToXml();
         dd($xmlSitemap);            //TODO FIX SITEMAP RETURN TO BROWSER
         return response($xmlSitemap, 200)->header('Content-Type', 'text/xml');
-    }
-
-    /**
-     * @param $allActivities
-     * @return string
-     */
-    private function convertJsonToXml($allActivities)
-    {
-        $activitiesArray = json_decode($allActivities, true);
-        $xmlConverter = new XmlConverter($activitiesArray);
-        $xmlSitemap = $xmlConverter->convertArrayToXml();
-        return $xmlSitemap;
     }
 }

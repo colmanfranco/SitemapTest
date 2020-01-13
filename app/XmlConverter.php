@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class XmlConverter extends Model
 {
-    private $activities;
+    private $sitemapContent;
     private $xmlDocument;
     private $activityLinkPriority = 0.5;
     private $xmlSitemap;
@@ -20,12 +20,28 @@ class XmlConverter extends Model
     /**
      * Create a new Eloquent model instance.
      *
-     * @param array $activitiesArray
+     * @param string $contentString
      */
-    function __construct(Array $activitiesArray)
+    function __construct(string $contentString)
     {
         $this->xmlDocument = new DOMDocument("1.0", "UTF-8");
-        $this->activities = $activitiesArray;
+        $contentArray = $this->convertJsonToXml($contentString);
+
+        if(!array_key_exists('data', $contentArray))
+        {
+            return $this->sitemapContent = $contentArray;
+        }
+
+        return $this->sitemapContent = $contentArray['data'];
+    }
+
+    /**
+     * @param string $string
+     * @return array
+     */
+    private function convertJsonToXml(string $string) : array
+    {
+        return json_decode($string, true);
     }
 
     /**
@@ -33,18 +49,20 @@ class XmlConverter extends Model
      */
     function convertArrayToXml()
     {
-        $this->buildActivitiesWithPriorities();
+        $this->buildSitemapWithPriorities();
         $this->setXmlHeaders();
         return $this->xmlSitemap;
     }
 
-    private function buildActivitiesWithPriorities()
+    /**
+     * @return void
+     */
+    private function buildSitemapWithPriorities() : void
     {
-        $cityActivities = $this->activities['data'];
-        foreach ($cityActivities as $activity)
+        foreach ($this->sitemapContent as $content)
         {
             $this->xmlSitemap = $this->xmlDocument->appendChild($this->xmlDocument->createElement('url'));
-            $this->xmlSitemap->appendChild($this->xmlDocument->createElement('loc', $activity['url']));
+            $this->xmlSitemap->appendChild($this->xmlDocument->createElement('loc', $content['url']));
             $this->xmlSitemap->appendChild($this->xmlDocument->createElement('priority', $this->activityLinkPriority));
         }
     }
@@ -57,5 +75,6 @@ class XmlConverter extends Model
         header('Content-Type: application/xml, charset=utf-8');
         header('Content-Length: ' . filesize($file_name));
         readfile($file_name);
+//        file_put_contents($this->xmlSitemap, $file_name);
     }
 }

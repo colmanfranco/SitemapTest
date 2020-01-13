@@ -24,7 +24,10 @@ class City extends Model
         $this->musementApiService = $musementApiService;
     }
 
-    public function getAllCities()
+    /**
+     * @return mixed
+     */
+    public function getAllCities() : string
     {
         return $this->musementApiService->fetchContent($this->citiesUrl);
     }
