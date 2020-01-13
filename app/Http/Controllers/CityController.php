@@ -16,13 +16,14 @@ class CityController extends Controller
 {
     /**
      * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-    public function citiesIndex(Request $request)
+    public function index(Request $request)
     {
         $cities = new Cities(new City(new MusementApiService($request)));
         $citiesString = $cities->getCities();
         $xmlConverter = new XmlConverter($citiesString);
         $xmlSitemap = $xmlConverter->convertArrayToXml();
-        dd($xmlSitemap);
+        return response($xmlSitemap, 200);
     }
 }

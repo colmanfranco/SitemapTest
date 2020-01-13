@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 class City extends Model
 {
     private $musementApiService;
-    private $citiesUrl = '/cities?limit=3';
+    private $citiesUrl = '/cities?limit=20';
 
     /**
      * Create a new Eloquent model instance.

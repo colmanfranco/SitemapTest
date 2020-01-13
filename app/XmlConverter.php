@@ -4,6 +4,7 @@ namespace App;
 
 use DOMDocument;
 use Illuminate\Database\Eloquent\Model;
+use phpDocumentor\Reflection\Types\Boolean;
 
 /**
  * Class XmlConverter
@@ -12,10 +13,10 @@ use Illuminate\Database\Eloquent\Model;
 class XmlConverter extends Model
 {
     private $sitemapContent;
+    private $contentArray;
     private $xmlDocument;
-    private $activityLinkPriority = 0.5;
+    private $activityLinkPriority;
     private $xmlSitemap;
-    private $startingTag = "http://www.sitemaps.org/schemas/sitemap/0.9";
 
     /**
      * Create a new Eloquent model instance.
@@ -25,14 +26,7 @@ class XmlConverter extends Model
     function __construct(string $contentString)
     {
         $this->xmlDocument = new DOMDocument("1.0", "UTF-8");
-        $contentArray = $this->convertJsonToXml($contentString);
-
-        if(!array_key_exists('data', $contentArray))
-        {
-            return $this->sitemapContent = $contentArray;
-        }
-
-        return $this->sitemapContent = $contentArray['data'];
+        $this->contentArray = $this->convertJsonToXml($contentString);
     }
 
     /**
@@ -59,12 +53,46 @@ class XmlConverter extends Model
      */
     private function buildSitemapWithPriorities() : void
     {
-        foreach ($this->sitemapContent as $content)
+        if($this->checkIfArrayKeyDataExists())
         {
-            $this->xmlSitemap = $this->xmlDocument->appendChild($this->xmlDocument->createElement('url'));
-            $this->xmlSitemap->appendChild($this->xmlDocument->createElement('loc', $content['url']));
-            $this->xmlSitemap->appendChild($this->xmlDocument->createElement('priority', $this->activityLinkPriority));
+            return;
         }
+
+        $urlset = $this->xmlDocument->createElement('urlset');
+        $urlset->setAttribute('xsi:schemaLocation', 'http://www.sitemaps.org/schemas/sitemap/0.9');
+        $this->xmlSitemap = $this->xmlDocument->appendChild($urlset);
+        $this->activityLinkPriority = 0.5;
+        $this->sitemapContent = $this->contentArray['data'];
+
+        foreach ($this->sitemapContent as $content) {
+            $url = $this->xmlSitemap->appendChild($this->xmlDocument->createElement('url'));
+            $url->appendChild($this->xmlDocument->createElement('loc', $content['url']));
+            $url->appendChild($this->xmlDocument->createElement('priority', $this->activityLinkPriority));
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    private function checkIfArrayKeyDataExists() : bool
+    {
+        if(!array_key_exists('data', $this->contentArray))
+        {
+            $urlset = $this->xmlDocument->createElement('urlset');
+            $urlset->setAttribute('xsi:schemaLocation', 'http://www.sitemaps.org/schemas/sitemap/0.9');
+            $this->xmlSitemap = $this->xmlDocument->appendChild($urlset);
+            $this->activityLinkPriority = 0.7;
+            $this->sitemapContent = $this->contentArray;
+
+            foreach ($this->sitemapContent as $content) {
+                $url = $this->xmlSitemap->appendChild($this->xmlDocument->createElement('url'));
+                $url->appendChild($this->xmlDocument->createElement('id', $content['id']));
+                $url->appendChild($this->xmlDocument->createElement('loc', $content['url']));
+                $url->appendChild($this->xmlDocument->createElement('priority', $this->activityLinkPriority));
+            }
+            return true;
+        }
+        return false;
     }
 
     private function setXmlHeaders() : void
@@ -72,9 +100,18 @@ class XmlConverter extends Model
         $this->xmlDocument->formatOutput = true;
         $file_name = 'Musement_Sitemap.xml';
         $this->xmlDocument->save($file_name);
-        header('Content-Type: application/xml, charset=utf-8');
+
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/xml');
+        header('Content-Disposition: attachment; filename=' . basename($file_name));
+        header('Content-Transfer-Encoding: binary');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
         header('Content-Length: ' . filesize($file_name));
+        ob_clean();
+        flush();
         readfile($file_name);
-//        file_put_contents($this->xmlSitemap, $file_name);
+        exec('rm ' . $file_name);
     }
 }

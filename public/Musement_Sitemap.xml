@@ -1,81 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<url>
-  <loc>https://www.musement.com/fr/milan/billets-coupe-file-et-visite-guidee-de-la-cene-de-de-vinci-497/</loc>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://www.musement.com/fr/milan/billets-et-audioguide-pour-la-vigne-de-leonard-de-vinci-et-et-la-casa-degli-atellani-39934/</loc>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://www.musement.com/fr/milan/visite-guidee-exclusive-avec-billets-coupe-file-pour-la-vigne-de-leonard-de-vinci-3936/</loc>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://www.musement.com/fr/milan/visite-historique-de-milan-et-billets-pour-la-cene-de-leonard-de-vinci-6455/</loc>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://www.musement.com/fr/milan/casa-milan-billets-pour-le-musee-mondo-milan-6092/</loc>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://www.musement.com/fr/milan/billets-pour-la-torre-branca-27968/</loc>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://www.musement.com/fr/milan/carte-cadeau-musement-2543/</loc>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://www.musement.com/fr/milan/billets-pour-le-musee-de-l-opera-de-la-scala-81666/</loc>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://www.musement.com/fr/milan/visite-a-pied-semi-privee-avec-billets-pour-la-cene-4757/</loc>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://www.musement.com/fr/milan/visite-de-l-opera-et-du-musee-de-la-scala-3246/</loc>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://www.musement.com/fr/milan/visite-guidee-du-centre-historique-la-scala-la-place-du-dome-et-la-galerie-victor-emmanuel-1697/</loc>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://www.musement.com/fr/milan/blue-note-milano-diner-spectacle-boisson-3724/</loc>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://www.musement.com/fr/milan/milanocard-valable-24-48-ou-72-heures-5756/</loc>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://www.musement.com/fr/milan/visite-du-cimetiere-monumental-de-milan-5664/</loc>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://www.musement.com/fr/milan/visite-guidee-de-milan-avec-le-duomo-la-cene-et-le-chateau-des-sforza-3115/</loc>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://www.musement.com/fr/milan/visita-guidee-de-la-cene-et-de-la-scala-3215/</loc>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://www.musement.com/fr/milan/renaissance-treasures-walking-tour-with-da-vinci-s-last-supper-24501/</loc>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://www.musement.com/fr/milan/visite-guidee-de-la-cene-et-le-codex-atlanticus-sans-file-3242/</loc>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://www.musement.com/fr/milan/le-pass-milan-3342/</loc>
-  <priority>0.5</priority>
-</url>
-<url>
-  <loc>https://www.musement.com/fr/milan/loco-dice-in-milan-212905/</loc>
-  <priority>0.5</priority>
-</url>
+<urlset xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <id>57</id>
+    <loc>https://www.musement.com/us/amsterdam/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <id>40</id>
+    <loc>https://www.musement.com/us/paris/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <id>2</id>
+    <loc>https://www.musement.com/us/rome/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <id>1</id>
+    <loc>https://www.musement.com/us/milan/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <id>60</id>
+    <loc>https://www.musement.com/us/barcelona/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <id>45</id>
+    <loc>https://www.musement.com/us/nice/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <id>168</id>
+    <loc>https://www.musement.com/us/dubai/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <id>55</id>
+    <loc>https://www.musement.com/us/new-york/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <id>47</id>
+    <loc>https://www.musement.com/us/lyon/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <id>378</id>
+    <loc>https://www.musement.com/us/bordeaux/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <id>4</id>
+    <loc>https://www.musement.com/us/venice/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <id>107</id>
+    <loc>https://www.musement.com/us/san-francisco/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <id>111</id>
+    <loc>https://www.musement.com/us/orlando/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <id>95</id>
+    <loc>https://www.musement.com/us/las-vegas/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <id>71</id>
+    <loc>https://www.musement.com/us/lisbon/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <id>160</id>
+    <loc>https://www.musement.com/us/marrakech/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <id>56</id>
+    <loc>https://www.musement.com/us/london/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <id>61</id>
+    <loc>https://www.musement.com/us/madrid/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <id>52</id>
+    <loc>https://www.musement.com/us/berlin/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <id>70</id>
+    <loc>https://www.musement.com/us/prague/</loc>
+    <priority>0.7</priority>
+  </url>
+</urlset>

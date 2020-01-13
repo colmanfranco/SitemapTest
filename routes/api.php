@@ -18,5 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/cities/{city_id}/activities','ActivityController@activitiesIndex');
-Route::get('/cities', 'CityController@citiesIndex');
+Route::get('/cities/{city_id}/activities','ActivityController@index');
+Route::get('/cities', 'CityController@index');

@@ -19,13 +19,12 @@ class ActivityController extends Controller
      * @param $cityId
      * @return string
      */
-    public function activitiesIndex(Request $request, $cityId)
+    public function index(Request $request, $cityId)
     {
         $activities = new Activities(new Activity(new MusementApiService($request), $cityId));
         $activitiesString = $activities->getCityActivities();
         $xmlConverter = new XmlConverter($activitiesString);
         $xmlSitemap = $xmlConverter->convertArrayToXml();
-        dd($xmlSitemap);            //TODO FIX SITEMAP RETURN TO BROWSER
-        return response($xmlSitemap, 200)->header('Content-Type', 'text/xml');
+        return response($xmlSitemap, 200);
     }
 }
