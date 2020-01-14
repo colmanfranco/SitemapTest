@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
  */
 class MusementApiService extends Model implements ApiService
 {
-    private $url = 'https://api.musement.com/api/v3';
+    private $rootUrl = 'https://api.musement.com/api/v3';
     private $language;
     private $method;
     private $content;
@@ -31,12 +31,21 @@ class MusementApiService extends Model implements ApiService
     /**
      * @param $resourceUrl
      * @return false|string
+     * @throws \Throwable
      */
     public function fetchContent($resourceUrl) : string
     {
-        $context = stream_context_create($this->httpHeaders());
-        $this->content = file_get_contents($this->url . $resourceUrl, false, $context);
-        return $this->content;
+        try
+        {
+            $context = stream_context_create($this->httpHeaders());
+            $this->content = file_get_contents($this->rootUrl . $resourceUrl, false, $context);
+            return $this->content;
+        }
+        catch (\Throwable $exception)
+        {
+            throw $exception->getCode();
+        }
+
     }
 
     /**

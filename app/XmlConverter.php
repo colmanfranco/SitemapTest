@@ -41,7 +41,7 @@ class XmlConverter extends Model
     /**
      * @return string
      */
-    function convertArrayToXml()
+    public function convertApiResponseIntoXml() : string
     {
         $this->buildSitemapWithPriorities();
         $this->setXmlHeaders();
