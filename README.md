@@ -33,7 +33,7 @@ localhost:8000
 GET {{ root_url }}/api/cities
 ```
 ### Base response
-![Cities Base Response](github.com/colmanfranco/SitemapTest/master/img/citiesBaseResponse.png)
+![Cities Base Response](github.com/colmanfranco/SitemapTest/blob/master/img/citiesBaseResponse.png)
 
 With the ```{city_id}``` you can make a request to see the activities in the targeted city.
 
@@ -42,4 +42,4 @@ With the ```{city_id}``` you can make a request to see the activities in the tar
 GET {{ root_url }}/api/cities/{city_id}/activities
 ```
 ### Base response
-![Activities Base Response](github.com/colmanfranco/SitemapTest/master/img/activitiesBaseResponse.png)
+![Activities Base Response](github.com/colmanfranco/SitemapTest/blob/master/img/activitiesBaseResponse.png)
