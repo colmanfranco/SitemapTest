@@ -10,7 +10,7 @@ Accepted locales:
 
 Locale values should be passed through header as ```Accept-Language```.
 
-You can get a list of cities, and for each city, you can fetch their list of activities using the ```{ city_id }``` (for practial porposes I put a limit of 20 for each one). Will show how in a practical example.
+You can get a list of cities, and for each city, you can fetch their list of activities using the ```{city_id}``` (for practial porposes I put a limit of 20 for each one). Will show how in a practical example.
 
 ### To start installing all dependencies do
 ```
@@ -33,13 +33,13 @@ localhost:8000
 GET {{ root_url }}/api/cities
 ```
 ### Base response
-![Cities Base Response](github.com/colmanfranco/SitemapTest/tree/master/img/citiesBaseResponse.png)
+![Cities Base Response](github.com/colmanfranco/SitemapTest/master/img/citiesBaseResponse.png)
 
-With the ```{ city_id }``` you can make a request to see the activities in the targeted city.
+With the ```{city_id}``` you can make a request to see the activities in the targeted city.
 
 ## Get Activities
 ```
-GET {{ root_url }}/api/cities/{ city_id }/activities
+GET {{ root_url }}/api/cities/{city_id}/activities
 ```
 ### Base response
-![Activities Base Response](github.com/colmanfranco/SitemapTest/tree/master/img/activitiesBaseResponse.png)
+![Activities Base Response](github.com/colmanfranco/SitemapTest/master/img/activitiesBaseResponse.png)
