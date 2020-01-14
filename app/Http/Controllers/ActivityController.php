@@ -23,7 +23,6 @@ class ActivityController extends Controller
     {
         $activities = new Activities(new Activity(new MusementApiService($request), $cityId));
         $activitiesString = $activities->getCityActivities();
-//        dd($activitiesString);
         $xmlConverter = new XmlConverter($activitiesString);
         $xmlSitemap = $xmlConverter->convertApiResponseIntoXml();
         return response($xmlSitemap, 200);
