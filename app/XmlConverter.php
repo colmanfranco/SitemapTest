@@ -23,29 +23,40 @@ class XmlConverter extends Model
      *
      * @param string $contentString
      */
-    function __construct(string $contentString)
+    private function __construct(string $contentString)
     {
         $this->xmlDocument = new DOMDocument("1.0", "UTF-8");
-        $this->contentArray = $this->convertJsonToXml($contentString);
+        $this->contentArray = $this->convertJsonToArray($contentString);
+    }
+
+    /**
+     * @param string $string
+     * @return object
+     */
+    static function fromApi(string $string) : object
+    {
+        $xmlConverter = new XmlConverter($string);
+        return $xmlConverter->convertArrayToXml();
     }
 
     /**
      * @param string $string
      * @return array
      */
-    private function convertJsonToXml(string $string) : array
+    private function convertJsonToArray(string $string) : array
     {
         return json_decode($string, true);
     }
 
     /**
-     * @return string
+     * @return object
      */
-    public function convertApiResponseIntoXml() : string
+    private function convertArrayToXml() : object
     {
         $this->buildSitemapWithPriorities();
         $this->setXmlHeaders();
-        return $this->xmlSitemap;
+        $xmlSitemap = simplexml_import_dom($this->xmlSitemap);
+        return $xmlSitemap;
     }
 
     /**
@@ -59,7 +70,7 @@ class XmlConverter extends Model
         }
 
         $urlset = $this->xmlDocument->createElement('urlset');
-        $urlset->setAttribute('xsi:schemaLocation', 'http://www.sitemaps.org/schemas/sitemap/0.9');
+        $urlset->setAttribute('xsi:schemaLocation', \config('url.urlset'));
         $this->xmlSitemap = $this->xmlDocument->appendChild($urlset);
         $this->activityLinkPriority = 0.5;
         $this->sitemapContent = $this->contentArray['data'];
@@ -79,7 +90,7 @@ class XmlConverter extends Model
         if(!array_key_exists('data', $this->contentArray))
         {
             $urlset = $this->xmlDocument->createElement('urlset');
-            $urlset->setAttribute('xsi:schemaLocation', 'http://www.sitemaps.org/schemas/sitemap/0.9');
+            $urlset->setAttribute('xsi:schemaLocation', \config('url.urlset'));
             $this->xmlSitemap = $this->xmlDocument->appendChild($urlset);
             $this->activityLinkPriority = 0.7;
             $this->sitemapContent = $this->contentArray;
@@ -112,6 +123,6 @@ class XmlConverter extends Model
         ob_clean();
         flush();
         readfile($file_name);
-        exec('rm ' . $file_name);
+//        exec('rm' . $file_name);
     }
 }

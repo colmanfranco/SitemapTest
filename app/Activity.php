@@ -20,7 +20,7 @@ class Activity extends Model
      * @param ApiService $musementApiService
      * @param $cityId
      */
-    function __construct(ApiService $musementApiService, $cityId)
+    function __construct(ApiService $musementApiService, int $cityId)
     {
         $this->musementApiService = $musementApiService;
         $this->activitiesUrl = '/cities/' . $cityId . '/activities?limit=20';

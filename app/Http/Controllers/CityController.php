@@ -22,8 +22,7 @@ class CityController extends Controller
     {
         $cities = new Cities(new City(new MusementApiService($request)));
         $citiesString = $cities->getCities();
-        $xmlConverter = new XmlConverter($citiesString);
-        $xmlSitemap = $xmlConverter->convertApiResponseIntoXml();
+        $xmlSitemap = XmlConverter::fromApi($citiesString);
         return response($xmlSitemap, 200);
     }
 }

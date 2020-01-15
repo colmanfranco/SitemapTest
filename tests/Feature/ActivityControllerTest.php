@@ -23,6 +23,7 @@ class ActivityControllerTest extends TestCase
         $response = $this->get('/api/cities/' . 1 . '/activities', $headers = ['Accept-Language:' . 'es-ES']);
 
         $response->assertOk();
-        $response->json();
+        $originalResponse = $response->original;
+        $this->assertInstanceOf(\SimpleXMLElement::class, $originalResponse);
     }
 }
